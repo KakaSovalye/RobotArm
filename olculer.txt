@@ -1,0 +1,54 @@
+Robot Kol Ölçüler
+-----------------------------------
+
+
+MG996R
+
+Motor soket yuvası boy 43mm
+en motor en kadar
+
+en 20,5 mm
+Boy kopçasız 40,5mm
+Boy Kopçalı 54,5 mm
+Yükseklik kopçaya kadar 30,5 mm
+Yükseklik dipten dişlinin sonuna kadar 44,5mm
+yükseklik dipten dişlinin dibine 40,5
+üstten kopçaya yükseklik 10mm
+Dişliden kopçaya yükseklik 15,5mm
+
+kopça dibinden dişliucuna takılan kol tepesine 19mm
+
+dişli çap 6mm
+üstten dişli sonuna 12mm
+üstten dişli merkez ~9mm
+
+
+kopça vide çap 4,3mm
+
+kopça en 18,3 mm
+kopça merkez ayrım 1mm
+Kopça iki vida arası 10mm
+
+dipten dişli ucuna takılan kol tepesine 47,47mm
+
+tutucu vida çap 2mm
+vida peneterasyon derinlik 5,7mm
+
+
+18,5 kollar arası aralık
+
+
+hareket merkezi 9,25
+
+
+SG-90
+soket 7,4
+
+Dıştan şaft merkez 12
+
+sg-90 dişli dış çap 7mm
+iç çap 1,21mm   7-1,21 =5,79
+
+
+
+
