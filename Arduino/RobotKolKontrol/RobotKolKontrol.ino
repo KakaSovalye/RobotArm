@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 Servo Temel, Platform, AltKol, UstKol, Burgu, Kiskac;
-int ServoDelay=30, TemelPos=90, PlatformPos=100, AltKolPos=90, UstKolPos=90, BurguPos=90, KiskacPos=0;
+int ServoDelay=30, TemelPos=90, PlatformPos=100, AltKolPos=90, UstKolPos=100, BurguPos=90, KiskacPos=0;
 int tTemel=-1, tPlatform=-1, tAltKol=-1, tUstKol=-1, tBurgu=-1, tKiskac=-1, tReset=-1, tStatus=-1, tDipMotordanBaslama=-1;
 
 // Platform Min 27, Kiskac 0 açık 180 kapali
@@ -36,7 +36,7 @@ void ResetPozisyonunaGit()
   MotorCevir(Temel,90);
   MotorCevir(Platform,100);
   MotorCevir(AltKol,90);
-  MotorCevir(UstKol,90);
+  MotorCevir(UstKol,100);
   MotorCevir(Burgu,90);
   MotorCevir(Kiskac,0);
 }

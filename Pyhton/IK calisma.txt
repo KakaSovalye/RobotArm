@@ -1,0 +1,27 @@
+Segmentler
+
+130 mm
+55 mm 
+55 mm
+145 mm
+
+x,y
+
+x için r * (Cosα) 
+y için r * (Sinα) 
+
+
+
+
+
+a1: displacement in the z-direction of joint one from the ground (i.e height) 
+a2: displacement from the axes of rotation from Motor 1 to Motor 2 
+a3: displacement in the z-direction from joint 1 to joint 2 (in this case 0 because both are at the same height)
+a4: the displacement from the axis of rotation from Motor 2 to the tool tip
+
+
+
+a1 = 6.2  # length of link a1 in cm
+a2 = 5.2  # length of link a2 in cm
+a3 = 0  # length of link a3 in cm
+a4 = 7  # length of link a4 in cm
