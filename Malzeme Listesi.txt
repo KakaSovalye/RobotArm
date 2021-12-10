@@ -1,0 +1,9 @@
+4 x MG996R Servo
+2 x SG90 Servo
+18 x Erkek Erkek Jumper
+1 x Breadboard
+1 x Arduino UNO
+4 x M3x25 Vida
+4 x M3x15 Vida
+8 x Civata
+4 x 2,2 x 7 mm Vida
