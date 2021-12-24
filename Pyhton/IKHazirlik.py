@@ -2,11 +2,11 @@ from numpy import *
 
 # bağlantılar ve uzunlukları mm bazında
 
-k0 = 145    # Platform
-k1 = 55     # Alt kol
-k2 = 55     # Üst kol
-k3 = 130    # Kiskac
-
+k0 = 125    # Platform
+k1 = 82     # Alt kol
+k2 = 82     # Üst kol
+k3 = 70    # Kiskac
+k4 = 84
 
 # ulaşılmak istenen nokta koordinatı
 px = 200

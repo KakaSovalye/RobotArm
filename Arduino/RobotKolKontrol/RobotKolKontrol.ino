@@ -1,9 +1,9 @@
 #include <Servo.h>
 
 Servo Temel, Platform, AltKol, UstKol, Burgu, Kiskac;
-int ServoDelay=30, TemelPos=90, PlatformPos=90, AltKolPos=90, UstKolPos=90, BurguPos=90, KiskacPos=0;
+int ServoDelay=30, TemelPos=90, PlatformPos=90, AltKolPos=86, UstKolPos=100, BurguPos=100, KiskacPos=0;
 int tTemel=-1, tPlatform=-1, tAltKol=-1, tUstKol=-1, tBurgu=-1, tKiskac=-1, tReset=-1, tStatus=-1, tDipMotordanBaslama=-1;
-
+bool feedback=false;
 // Platform Min 27, Kiskac 0 açık 180 kapali
 
 void MotorCevir(Servo &Motor, int Hedef, int Hiz=ServoDelay) {
@@ -11,6 +11,7 @@ void MotorCevir(Servo &Motor, int Hedef, int Hiz=ServoDelay) {
   if (Hedef > 180 || Hedef < 0)
   return;
 
+  feedback=true;
   int pozisyon = Motor.read();
   
   while (pozisyon!=Hedef)
@@ -35,9 +36,9 @@ void ResetPozisyonunaGit()
 {
   MotorCevir(Temel,90);
   MotorCevir(Platform,90);
-  MotorCevir(AltKol,90);
-  MotorCevir(UstKol,90);
-  MotorCevir(Burgu,90);
+  MotorCevir(AltKol,86);
+  MotorCevir(UstKol,100);
+  MotorCevir(Burgu,100);
   MotorCevir(Kiskac,0);
 }
 
@@ -133,34 +134,77 @@ void loop() {
   {
     if (tDipMotordanBaslama==-1)
     {
-    if (tTemel!=-1)
-      MotorCevir(Temel, tTemel);
-    if (tPlatform !=-1)
-      MotorCevir(Platform, tPlatform);
-    if (tAltKol!=-1)
-      MotorCevir(AltKol,tAltKol);
-    if (tUstKol!=-1)
-      MotorCevir(UstKol,tUstKol);
-    if (tBurgu!=-1)
-      MotorCevir(Burgu,tBurgu);
-    if (tKiskac!=-1)
-      MotorCevir(Kiskac,tKiskac,5);
+      if (tTemel!=-1)
+      {        
+        MotorCevir(Temel, tTemel);
+        tTemel=-1;
+      }
+      if (tPlatform !=-1)
+      {       
+        MotorCevir(Platform, tPlatform);
+        tPlatform =-1;
+      }
+      if (tAltKol!=-1)
+      {
+        MotorCevir(AltKol,tAltKol);
+        tAltKol=-1;
+      }
+      if (tUstKol!=-1)
+      {
+        MotorCevir(UstKol,tUstKol);
+        tUstKol =-1;
+      }
+      if (tBurgu!=-1)
+      {
+        MotorCevir(Burgu,tBurgu);
+        tBurgu =-1;
+      }
+      if (tKiskac!=-1)
+      {
+        MotorCevir(Kiskac,tKiskac,5);
+        tKiskac =-1;
+      }
     }
     else
     {
       if (tKiskac!=-1)
-      MotorCevir(Kiskac,tKiskac,5);
+      {
+        MotorCevir(Kiskac,tKiskac,5);
+        tKiskac =-1;
+      }
       if (tBurgu!=-1)
-      MotorCevir(Burgu,tBurgu);
+      {
+        MotorCevir(Burgu,tBurgu);
+        tBurgu =-1;
+      }
       if (tUstKol!=-1)
-      MotorCevir(UstKol,tUstKol);
+      {
+        MotorCevir(UstKol,tUstKol);
+        tUstKol =-1;
+      }
       if (tAltKol!=-1)
-      MotorCevir(AltKol,tAltKol);
+      {
+        MotorCevir(AltKol,tAltKol);
+        tAltKol =-1;
+      }
       if (tPlatform !=-1)
-      MotorCevir(Platform, tPlatform);
+      {
+        MotorCevir(Platform, tPlatform);
+        tPlatform  =-1;
+      }
       if (tTemel!=-1)
-      MotorCevir(Temel, tTemel);
+      {
+        MotorCevir(Temel, tTemel);
+        tTemel =-1;
+      }
     }
+    if (feedback)
+    {
+      feedback=false;
+      Serial.println("R-1S-1D-1T"+String(Temel.read())+"P"+String(Platform.read())+"A"+String(AltKol.read())+"U"+String(UstKol.read())
+      +"B"+String(Burgu.read())+"K"+String(Kiskac.read()));      
+    }
+    
   }
 
 

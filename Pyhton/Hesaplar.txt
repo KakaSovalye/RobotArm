@@ -1,0 +1,62 @@
+sin ( x + y ) = sin x * cos y + cos x * sin y
+sin ( x - y) = sin x * cos y - cos x * sin y
+
+cos( x + y ) = cos x * cos y - sin x * sin y
+cos( x - y ) = cos x * cos y + sin x * sin y
+
+
+
+sin(x+y+z) = sin(x)cos(y)Cos(z) + cos(x)sin(y)cos(z) + cos(x)cos(y)sin(z) - sin(x)sin(y)sin(z)
+
+
+te1 motor 1 açı
+te2 motor 2 açı
+te3 motor 3 açı
+
+l1 motor 1 uzunluk
+l2 motor 2 uzunluk
+l3 motor 3 uzunluk
+
+yatay ile açıları
+
+te1
+te2-90-te1
+te3-90-te2
+
+
+
+X= l1 x Sin(te1) + l2 x Sin(te2-90-te1) + l3 x Sin(te3-90-te2)
+Y= l1 x Cos(te1) + l2 x Cos(te2-90-te1) + l3 x Cos(te3-90-te2)
+
+
+Sin(te2-90-te1) = sin(te2) * cos (90-te1) - cos(te2) * sin (90-te1)
+=>
+Sin(te2-90-te1)= sin (te2) * (cos (90) * cos (te1) + sin (90) * sin (te1)) - Cos (te2) * (sin (90) * cos (te1) - cos (90) * sin (te1))
+=>
+Sin(te3-90-te2)= sin (te3) * (cos (90) * cos (te2) + sin (90) * sin (te2)) - Cos (te3) * (sin (90) * cos (te2) - cos (90) * sin (te2))
+
+
+
+
+Cos(te2-90-te1) = cos te2 * cos (90-te1) + sin te2 * sin (90-te1)
+=>
+Cos(te2-90-te1) = cos (te2) * (cos (90) * cos (te1) + sin (90) * sin (te1)) + sin (te2) * (sin (90) * cos (te1) - cos (90) * sin (te1))
+=>
+Cos(te3-90-te2) = cos (te3) * (cos (90) * cos (te2) + sin (90) * sin (te2)) + sin (te3) * (sin (90) * cos (te2) - cos (90) * sin (te2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
