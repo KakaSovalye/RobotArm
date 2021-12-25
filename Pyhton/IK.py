@@ -11,7 +11,13 @@ k1 = 82     # Alt kol
 k2 = 82     # Üst kol
 k3 = 154    # Kiskac sonu
 
-ArduinoSerial=Serial('com9',9600,timeout=0.1)
+arduino = False
+
+try:
+    ArduinoSerial=Serial('com9',9600,timeout=0.1)
+    arduino=True
+except:
+    arduino=False
 
 # Robot 0 pozisyonu ince ayar
 rTemel=90
@@ -131,7 +137,10 @@ IKCalc(X,Y,ANG)
 arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
 print(arduinoData)
 
-ArduinoSerial.write(arduinoData.encode('utf-8'))
+if arduino:
+    ArduinoSerial.write(arduinoData.encode('utf-8'))
+
+
 
 while True:
     img = cv2.imread('img/robot_arm.jpg')
@@ -144,10 +153,12 @@ while True:
         tPlt,tAlt,tUst=Plt,Alt,Ust
         Plt,Alt,Ust= IKCalc(X,Y,ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb=ArduinoSerial.readline()
-        print(fb)
+
         # print('Sağ')
     if (cv2.waitKeyEx(0)==2424832):
         X-=1
@@ -155,10 +166,12 @@ while True:
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(X, Y, ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb = ArduinoSerial.readline()
-        print(fb)
+
         # print('Sol')
     if (cv2.waitKeyEx(0)==2490368):
         Y+=1
@@ -166,10 +179,12 @@ while True:
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(X, Y, ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb = ArduinoSerial.readline()
-        print(fb)
+
         # print('Yukarı')
     if (cv2.waitKeyEx(0)==2621440):
         Y-=1
@@ -177,10 +192,12 @@ while True:
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(X, Y, ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb = ArduinoSerial.readline()
-        print(fb)
+
         # print('Aşağı')
     if (cv2.waitKeyEx(0)==122):
         ANG+=1
@@ -188,10 +205,12 @@ while True:
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(X, Y, ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb = ArduinoSerial.readline()
-        print(fb)
+
         # print('Z')
     if (cv2.waitKeyEx(0)==120):
         ANG-=1
@@ -199,18 +218,23 @@ while True:
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(X, Y, ANG)
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
+        if arduino:
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            fb = ArduinoSerial.readline()
+            print(fb)
         print(arduinoData)
-        fb = ArduinoSerial.readline()
-        print(fb)
+
         # print('X')
     if (cv2.waitKeyEx(0) == 114):
-        arduinoData = 'R1'
-        ArduinoSerial.write(arduinoData.encode('utf-8'))
-        print(arduinoData)
+        if arduino:
+            arduinoData = 'R1'
+            ArduinoSerial.write(arduinoData.encode('utf-8'))
+            print(arduinoData)
         X = 318
         Y = 0
         ANG = 0
+        Plt, Alt, Ust = IKCalc(X, Y, ANG)
+        
 
 
 
