@@ -11,6 +11,9 @@ k1 = 82     # Alt kol
 k2 = 83     # Üst kol
 k3 = 150    # Kiskac sonu
 
+koordinatDegisim=2
+dereceDegisim=1
+
 arduino = False
 
 try:
@@ -83,15 +86,18 @@ def IKCalc(x,y,angle):
         AltKol = rAltKol + int(rad2deg(teta_2))
         UstKol = rUstKol + int(rad2deg(teta_3))
 
-        if (AltKol>180):
-            AltKol=AltKol-180
-        if (UstKol>180):
-            UstKol=UstKol-180
+        if (Platform>180 or Platform <0 or AltKol>180 or AltKol<0 or UstKol>180 or UstKol<0):
+            raise
 
-
-        Platform = Platform%180
-        AltKol = AltKol%180
-        UstKol = UstKol%180
+        # if (AltKol>180):
+        #     AltKol=AltKol-180
+        # if (UstKol>180):
+        #     UstKol=UstKol-180
+        #
+        #
+        # Platform = Platform%180
+        # AltKol = AltKol%180
+        # UstKol = UstKol%180
 
         print('Platform : ', Platform)
         print('Alt Kol : ', AltKol)
@@ -143,6 +149,7 @@ tUst = Ust
 
 IKCalc(Y,X,ANG)
 
+print ('X: '+str(Y)+' Y: '+str(X)+' ANG: '+str(ANG))
 arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
 print(arduinoData)
 
@@ -157,10 +164,12 @@ while True:
     cv2.imshow('ss',img2)
     
     if (cv2.waitKeyEx(0)==2555904):
-        X+=2
-        print ('X: '+str(Y)+' Y: '+str(X)+' ANG: '+str(ANG))
+        X+=koordinatDegisim
         tPlt,tAlt,tUst=Plt,Alt,Ust
         Plt,Alt,Ust= IKCalc(Y,X,ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            X-=2*koordinatDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))
@@ -171,9 +180,11 @@ while True:
         # print('Sağ')
     if (cv2.waitKeyEx(0)==2424832):
         X-=2
-        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(Y, X, ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            X+=2*koordinatDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))
@@ -183,10 +194,12 @@ while True:
 
         # print('Sol')
     if (cv2.waitKeyEx(0)==2490368):
-        Y+=2
-        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
+        Y+=koordinatDegisim
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(Y, X, ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            Y-=2*koordinatDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))
@@ -196,10 +209,12 @@ while True:
 
         # print('Yukarı')
     if (cv2.waitKeyEx(0)==2621440):
-        Y-=2
-        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
+        Y-=koordinatDegisim
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(Y, X, ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            Y+=2*koordinatDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))
@@ -209,10 +224,12 @@ while True:
 
         # print('Aşağı')
     if (cv2.waitKeyEx(0)==122):
-        ANG+=1
-        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
+        ANG+=dereceDegisim
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(Y, X, ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            ANG-=2*dereceDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))
@@ -222,10 +239,12 @@ while True:
 
         # print('Z')
     if (cv2.waitKeyEx(0)==120):
-        ANG-=1
-        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
+        ANG-=dereceDegisim
         tPlt, tAlt, tUst = Plt, Alt, Ust
         Plt, Alt, Ust = IKCalc(Y, X, ANG)
+        if (Plt==-1 and Alt==-1 and Ust ==-1):
+            ANG+=2*dereceDegisim
+        print('X: ' + str(Y) + ' Y: ' + str(X) + ' ANG: ' + str(ANG))
         arduinoData = 'R-1S-1D-1T-1P{0:d}A{1:d}U{2:d}'.format(Plt, Alt, Ust)
         if arduino:
             ArduinoSerial.write(arduinoData.encode('utf-8'))

@@ -26,6 +26,10 @@ SOL(CCW)		SAĞ(CW)
 KAPALI			AÇIK
 180	KISKAC		0
 
+90 derece ileri (x, y, ang) 151,163,90
+
+euler angles
+
 Komutlar
 
 R-1S-1D1T-1P-1A-1U-1B-1K-1

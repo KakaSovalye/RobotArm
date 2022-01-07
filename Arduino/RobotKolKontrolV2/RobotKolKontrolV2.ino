@@ -14,26 +14,26 @@ void MotorKontrol()
 {
   if (tTemel!=-1 || tPlatform!=-1 || tAltKol!=-1 || tUstKol!=-1 || tBurgu!=-1 || tKiskac!=-1)
   {  // Hareket dengeleme
-    if(flipflop)
-    {  
+//    if(flipflop)
+//    {  
       MotorCevir(Temel,tTemel);
       MotorCevir(Platform,tPlatform);
       MotorCevir(AltKol,tAltKol);
       MotorCevir(UstKol,tUstKol);
       MotorCevir(Burgu,tBurgu);
       MotorCevir(Kiskac,tKiskac);
-      flipflop=false;
-    }
-    else
-    {
-      MotorCevir(Kiskac,tKiskac);
-      MotorCevir(Burgu,tBurgu); 
-      MotorCevir(UstKol,tUstKol);
-      MotorCevir(AltKol,tAltKol);
-      MotorCevir(Platform,tPlatform);
-      MotorCevir(Temel,tTemel);
-      flipflop=true;      
-    }
+//      flipflop=false;
+//    }
+//    else
+//    {
+//      MotorCevir(Kiskac,tKiskac);
+//      MotorCevir(Burgu,tBurgu); 
+//      MotorCevir(UstKol,tUstKol);
+//      MotorCevir(AltKol,tAltKol);
+//      MotorCevir(Platform,tPlatform);
+//      MotorCevir(Temel,tTemel);
+//      flipflop=true;      
+//    }
     boolDinlemeyeHazir=false;
   }
   else
