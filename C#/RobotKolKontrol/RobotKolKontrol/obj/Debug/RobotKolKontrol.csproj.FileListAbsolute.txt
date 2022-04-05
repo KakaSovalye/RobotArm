@@ -1,0 +1,10 @@
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\bin\Debug\RobotKolKontrol.exe.config
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\bin\Debug\RobotKolKontrol.exe
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\bin\Debug\RobotKolKontrol.pdb
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.csprojAssemblyReference.cache
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.Form1.resources
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.Properties.Resources.resources
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.csproj.GenerateResource.cache
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.csproj.CoreCompileInputs.cache
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.exe
+E:\Users\Berkin\Source\Repos\RobotKolKontrol\RobotKolKontrol\obj\Debug\RobotKolKontrol.pdb

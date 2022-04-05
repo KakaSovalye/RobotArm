@@ -1,6 +1,9 @@
 from numpy import *
 from math import sin, cos, asin, acos, atan, sqrt, degrees, radians, pi
 from serial import Serial
+import pyodbc
+from pwinput import pwinput
+from termcolor import colored
 
 # bağlantılar ve uzunlukları mm bazında
 
@@ -29,7 +32,11 @@ rUstKol=100
 rBurgu=100
 rKiskac=0
 
-
+ServerIP="0.0.0.0"
+Database = "Null"
+UID ="none"
+PWD ="none"
+DBVerisiGirildi = False
 
 def coordinate_to_degrees(x, y):  # function to convert coordinates to angles from the x-axis (0~360)
     x += 0.00001  # this is to avoid zero division error in case x == 0
@@ -44,12 +51,10 @@ def coordinate_to_degrees(x, y):  # function to convert coordinates to angles fr
         angle = 360 + degrees(atan(y / x))
     return round(angle, 1)
 
-
-
 def IKCalc(x,y,angle):
     try:
         # ulaşılmak istenen nokta koordinatı
-
+        # robot kolunun x ve y'si ters işleniyor :)
         px = x
         py = y
 
@@ -58,9 +63,11 @@ def IKCalc(x,y,angle):
         fi = angle
         fi = deg2rad(fi)
 
+
         # inverse kinematik
         wx = px - k3*cos(fi)
         wy = py - k3*sin(fi)
+
 
         # wx = px - k3 * sin(fi)
         # wy = py - k3 * cos(fi)
@@ -80,6 +87,7 @@ def IKCalc(x,y,angle):
         teta_1 = arctan2(s1,c1)
         teta_3 = fi-teta_1-teta_2
 
+
         Platform = 90+int(rad2deg(teta_1))
         AltKol = rAltKol + int(rad2deg(teta_2))
         UstKol = rUstKol + int(rad2deg(teta_3))
@@ -93,8 +101,56 @@ def IKCalc(x,y,angle):
 
         return Platform, AltKol, UstKol
     except:
-        print('Erişilemez Nokta')
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('!!!!!!!!!!!!!                       !!!!!!!!!!!!')
+        print('!!!!!!!!!!!!!  ! ERİŞİLMEZ NOKTA  ! !!!!!!!!!!!!')
+        print('!!!!!!!!!!!!!                       !!!!!!!!!!!!')
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         return -1,-1,-1
+
+def db_baglanti_test():
+    try:
+        sonuc=[]
+        conn = pyodbc.connect('Driver={SQL Server};'
+                              'Server='+ServerIP+';'
+                              'Database='+Database+';'
+                              'UID='+UID+'; PWD='+PWD, timeout=1)
+        cursor = conn.cursor()
+        cursor.execute("SELECT '1'")
+        cursor.close()
+        return True
+    except pyodbc.Error as ex:
+        print("Veritabanına bağlanılamadı...")
+        return False
+
+def db_veri_cek(command):
+    sonuc=[]
+    conn = pyodbc.connect('Driver={SQL Server};'
+                          'Server='+ServerIP+';'
+                          'Database='+Database+';'
+                          'UID='+UID+'; PWD='+PWD)
+
+    cursor = conn.cursor()
+    cursor.execute(command)
+
+    for row in cursor:
+        sonuc.append(row)
+    cursor.close()
+    return sonuc
+
+# def db_veri_guncelle(command):
+#     conn = pyodbc.connect('Driver={SQL Server};'
+#                           'Server='+ServerIP+';'
+#                           'Database='+Database+';'
+#                           'UID='+UID+'; PWD='+PWD)
+#
+#     cursor = conn.cursor()
+#     cursor.execute(command)
+#     conn.commit()
+#     cursor.close()
+
+
+
 
 
 Y=315
@@ -124,6 +180,17 @@ if arduino:
     ArduinoSerial.write(arduinoData.encode('utf-8'))
 
 while(programCik!=True):
+    while (DBVerisiGirildi!=True):
+        print("DB Server :")
+        ServerIP=input()
+        print("Database :")
+        Database=input()
+        print("UID :")
+        UID=input()
+        PWD=pwinput("Password:")
+        if (db_baglanti_test()==True):
+            DBVerisiGirildi=True
+            print("Veritabanına bağlanıldı....")
     print("Koordinatlari x,y,a olarak giriniz. r resetler, q programı kapatır :")
     girdi = input()
     if (girdi=="r" or girdi=="R"):
@@ -155,7 +222,15 @@ while(programCik!=True):
 
             X=int(koordinatlar[0])
             Y=int(koordinatlar[1])
-            ANG=int(koordinatlar[2])
+            if (koordinatlar[2]=="-1"):
+                ANG=db_veri_cek("spsel_KoordinataGoreMinAci "+str(X)+","+str(Y))[0][0]
+                print("Min aci "+str(ANG))
+            elif (koordinatlar[2] == "-2"):
+                ANG = db_veri_cek("spsel_KoordinataGoreMaxAci " + str(X) + "," + str(Y))[0][0]
+                print("Max aci " + str(ANG))
+            else:
+                ANG=int(koordinatlar[2])
+                print("Girilen aci " + str(ANG))
 
             # print('X: ' + str(X) + ' Y: ' + str(Y) + ' ANG: ' + str(ANG))
 

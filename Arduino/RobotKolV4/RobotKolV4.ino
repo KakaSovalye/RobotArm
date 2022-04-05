@@ -6,9 +6,13 @@ int tTemel=-1, tPlatform=-1, tAltKol=-1, tUstKol=-1, tBurgu=-1, tKiskac=-1, tRes
 bool boolFeedback=false, boolDinlemeyeHazir=true, flipflop=false;
 
 unsigned long previousMillis =0;
-const long interval = 50;
+const long interval = 100;
 
 // Platform Min 27, Kiskac 0 açık 180 kapali
+
+typedef struct eklem {Servo motoru; int hedefAci;} Eklem;
+
+Eklem eklemler[6] = {{Temel,tTemel},{Platform,tPlatform},{AltKol,tAltKol},{UstKol,tUstKol},{Burgu,tBurgu},{Kiskac,tKiskac}};
 
 void MotorKontrol()
 {

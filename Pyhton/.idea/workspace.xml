@@ -30,7 +30,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.Gorsellestir">
+  <component name="RunManager" selected="Python.IKGirisliKontrol">
     <configuration name="Gorsellestir" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Pyhton" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -88,7 +88,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IKGirisliKontrol.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -136,13 +136,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Gorsellestir" />
+      <item itemvalue="Python.IKGirisliKontrol" />
+      <item itemvalue="Python.IKRangeCalc" />
+      <item itemvalue="Python.IK" />
+      <item itemvalue="Python.RobotGui" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Gorsellestir" />
-        <item itemvalue="Python.IKRangeCalc" />
         <item itemvalue="Python.IKGirisliKontrol" />
         <item itemvalue="Python.IK" />
         <item itemvalue="Python.RobotGui" />
+        <item itemvalue="Python.Gorsellestir" />
+        <item itemvalue="Python.IKRangeCalc" />
       </list>
     </recent_temporary>
   </component>
@@ -160,26 +167,34 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1641555589065">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1641905047433">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641555589065" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1641555589065">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641905047433" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1646403068691">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1646403068691" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1643371780225" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1646403068691">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1646403068691" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1643371780224" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1646403068691">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1646403068691" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1643371780224" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1646403068691">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1646403068691" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1643371780224" />
+    <state x="464" y="225" key="SettingsEditor" timestamp="1643370170699">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641555589065" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1641555589065">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641555589065" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1641555589065">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641555589065" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1641378501477">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1641378501477" />
+    <state x="464" y="225" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1643370170699" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1640778060584">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -3,10 +3,11 @@
 Servo Temel, Platform, AltKol, UstKol, Burgu, Kiskac;
 int ServoDelay=30, TemelPos=90, PlatformPos=90, AltKolPos=86, UstKolPos=100, BurguPos=100, KiskacPos=0;
 int tTemel=-1, tPlatform=-1, tAltKol=-1, tUstKol=-1, tBurgu=-1, tKiskac=-1, tReset=-1, tStatus=-1, tDipMotordanBaslama=-1;
+int HareketSayaci=0;
 bool boolFeedback=false, boolDinlemeyeHazir=true, flipflop=false;
 
 unsigned long previousMillis =0;
-const long interval = 50;
+const long interval = 100;
 
 // Platform Min 27, Kiskac 0 açık 180 kapali
 
@@ -14,26 +15,42 @@ void MotorKontrol()
 {
   if (tTemel!=-1 || tPlatform!=-1 || tAltKol!=-1 || tUstKol!=-1 || tBurgu!=-1 || tKiskac!=-1)
   {  // Hareket dengeleme
-//    if(flipflop)
-//    {  
+    HareketSayaci++;
+    int TF=abs((Temel.read()-tTemel));
+    int PF=abs((Platform.read()-tPlatform));
+    int AF=abs((AltKol.read()-tAltKol));
+    int UF=abs((UstKol.read()-tUstKol));
+    int BF=abs((Burgu.read()-tBurgu));
+    int KF=abs((Kiskac.read()-tKiskac));
+      
+    int Degerler[6] ={TF,PF,AF,UF,BF,KF};
+
+    int MaxDeger=Degerler[0];
+
+    for (int i = 0; i < (sizeof(Degerler) / sizeof(Degerler[0])); i++) {
+      MaxDeger = max(Degerler[i],MaxDeger);
+    }
+    
+    int TTekrardaBir = int(round(MaxDeger / TF));
+    int PTekrardaBir = int(round(MaxDeger / PF));
+    int ATekrardaBir = int(round(MaxDeger / AF));
+    int UTekrardaBir = int(round(MaxDeger / UF));
+    int BTekrardaBir = int(round(MaxDeger / BF));
+    int KTekrardaBir = int(round(MaxDeger / KF));
+
+    if (HareketSayaci%TTekrardaBir==0)
       MotorCevir(Temel,tTemel);
+    if (HareketSayaci%PTekrardaBir==0)  
       MotorCevir(Platform,tPlatform);
+    if (HareketSayaci%ATekrardaBir==0)
       MotorCevir(AltKol,tAltKol);
+    if (HareketSayaci%UTekrardaBir==0)
       MotorCevir(UstKol,tUstKol);
+    if (HareketSayaci%BTekrardaBir==0)
       MotorCevir(Burgu,tBurgu);
+    if (HareketSayaci%KTekrardaBir==0)
       MotorCevir(Kiskac,tKiskac);
-//      flipflop=false;
-//    }
-//    else
-//    {
-//      MotorCevir(Kiskac,tKiskac);
-//      MotorCevir(Burgu,tBurgu); 
-//      MotorCevir(UstKol,tUstKol);
-//      MotorCevir(AltKol,tAltKol);
-//      MotorCevir(Platform,tPlatform);
-//      MotorCevir(Temel,tTemel);
-//      flipflop=true;      
-//    }
+
     boolDinlemeyeHazir=false;
   }
   else
@@ -41,6 +58,7 @@ void MotorKontrol()
     Serial.println("R-1S-1D-1T"+String(Temel.read())+"P"+String(Platform.read())+"A"+String(AltKol.read())+"U"+String(UstKol.read())
         +"B"+String(Burgu.read())+"K"+String(Kiskac.read()));  
     boolDinlemeyeHazir=true;
+    HareketSayaci=0;
   }
 }
 

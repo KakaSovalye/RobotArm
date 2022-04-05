@@ -1,0 +1,9 @@
+CREATE PROCEDURE [dbo].[spsel_KoordinataGoreMinAci] @X INT, @Y INT	
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT MIN(ANGLE)
+	FROM WorkEnvelope
+	WHERE X=@X AND Y=@Y   
+	
+END
